@@ -43,12 +43,14 @@ def split_line(sentence):
 def display_content(filename):
 	f=open(filename, 'r')
 	content=f.readlines()
+	new_list=[]
 	for line in content:
 		line=line.rstrip()
-		print(split_line(line))
+		new_list.append(split_line(line))
+	return new_list
 
 def main():
-	display_content(sys.argv[1])
+	print(*display_content(sys.argv[1]), sep='\n')
 
 if __name__=="__main__":
 	main()
