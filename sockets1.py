@@ -8,8 +8,8 @@ def main():
     if len(sys.argv) < 3:
         exit('You did not provide the arguments!')
     sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-    server_address = (sys.argv[1],int(sys.argv[2])) 
-#sys.argv[1] is IP address; sys.argv[2] is port number
+    server_address = (sys.argv[1], int(sys.argv[2])) 
+    #sys.argv[1] is IP address; sys.argv[2] is port number
 
     sock.connect(server_address)
 
