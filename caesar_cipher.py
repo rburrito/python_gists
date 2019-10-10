@@ -2,8 +2,9 @@
 
 import sys
 
-#A Caesar Cipher script
-#Works with
+#A Caesar Cipher script that decodes ciphers based on the index.
+#Works with caesar_cipher.txt
+
 def decode_message(character, modby):
 	if not character.isalpha():
 		return character
