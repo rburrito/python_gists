@@ -4,7 +4,8 @@ import sys
 import requests
 import re
 
-#A script that finds the flag after winning a black jack game. 
+#A script that finds the flag after winning a game of black jack.
+#Use with site https://learn.fullstackacademy.com/workshop/5d9776d693bae000044d7ed0/content/5da0980a90e5b80004593dd3/text
 
 def blackjack(site, session):
         response=session.post(site, params={"do_what":"deal"})
