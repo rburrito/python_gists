@@ -1,32 +1,28 @@
-#!/usr/bin/env python
-
-#Use http://web-track-1.runcode.ninja/ as first_arg
+#!/usr/bin/env python3
 
 import requests
-import re
 import sys
+import re
 
-def track_web(count):
-    first_arg = sys.argv[1]
-    res = requests.get(first_arg + '/product/' + str(count))
-    flag = re.findall(r'RCN{who_put_this_here}', res.text)
+#Use with http://web-track-1.runcode.ninja/
 
-    if flag == []:
-        return False
-    return flag[0]
+def web_track(web_page):
+        response=requests.get(web_page) #GET request for web page
+        flag=re.findall('RCN{who_put_this_here}',response.text) #searches using regular expression for a flag
+        if not flag: 
+                return False #if match is empty, return False
+        return flag #otherwise return the flag
 
 def main():
-    first_arg = sys.argv[1]
-    counter = 1
-
-    while track_web(counter) == False:
-        web_crawl=track_web(counter)
-        counter+=1
-
-    web_crawl = track_web(counter)
-    if web_crawl:
-        return web_crawl
+        flag=web_track(sys.argv[1]) #sets return value to flag variable
+        counter=1 #starts a counter to increment the pages
+        while flag==False: 
+                page=sys.argv[1]+'product/'+str(counter) #adds the product path to the web page and a counter that increments the pages.
+                flag=web_track(page) 
+                counter+=1 #increments web page
+        return flag[0]
 
 
-if __name__ == '__main__':
-    print(main())
+
+if __name__=="__main__":
+        print(main())
