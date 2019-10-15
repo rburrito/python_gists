@@ -4,8 +4,6 @@ import requests
 import sys
 import re
 
-#Use with http://web-track-1.runcode.ninja/
-
 def web_track(web_page):
         response=requests.get(web_page) #GET request for web page
         flag=re.findall('RCN{who_put_this_here}',response.text) #searches using regular expression for a flag
@@ -23,6 +21,6 @@ def main():
         return flag[0]
 
 
-
 if __name__=="__main__":
         print(main())
+
