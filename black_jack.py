@@ -4,25 +4,25 @@ import sys
 import requests
 import re
 
-#A script that finds the flag after winning a game of black jack.
-#Use with site https://learn.fullstackacademy.com/workshop/5d9776d693bae000044d7ed0/content/5da0980a90e5b80004593dd3/text
-
 def blackjack(site, session):
-        response=session.post(site, params={"do_what":"deal"})
-        win=re.findall("RCN{automate_the_boring_stuff}", response.text)
+        response=session.post(site, params={"do_what":"deal"}) #makes a POST request with the parameters "do_what" equal to deal
+        win=re.findall("RCN{automate_the_boring_stuff}", response.text) #looks for the flag in the the text of the page.
         if not win:
                 return False
         return win[0]
 
 def main():
-        session=requests.Session()
-        get_req=session.get(sys.argv[1])
-        site=sys.argv[1]+"bj.php"
-        flag=blackjack(site, session)
+        session=requests.Session() #starts a new session
+        get_req=session.get(sys.argv[1]) #uses this session to make a GET request
+        site=sys.argv[1]+"bj.php" #after the first request, make POST requests to bj.php
+        flag=blackjack(site, session) #Passes the session and site created in this function to the blackjack function
         while flag==False:
-                flag=blackjack(site, session)
+                flag=blackjack(site, session) #While flag is equal to False, keep making POST requests
         return flag
-                                
+
 
 if __name__== "__main__":
         print(main())
+
+
+
